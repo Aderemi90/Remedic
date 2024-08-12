@@ -1,0 +1,39 @@
+.appointment-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .appointment-form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .appointment-form div {
+    margin-bottom: 15px;
+  }
+  
+  .appointment-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .appointment-form input,
+  .appointment-form select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .appointment-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .appointment-form button:hover {
+    background-color: #0056b3;
+  }

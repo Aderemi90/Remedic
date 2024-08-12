@@ -1,0 +1,131 @@
+  .hero {
+    padding: 48px 0;
+    position: absolute;
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+  }
+
+  .Homebg {
+    z-index: -6;
+    opacity: 0.5;
+  }
+
+  .hero p {
+    font-size: 40px;
+    margin: 20px 0;
+    max-width: 550px;
+    font-weight: bold;
+    margin-left: 50px;
+  }
+
+  .hero button {
+    background-color: rgb(16, 156, 211);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 50px;
+  }
+
+  .hero button:hover {
+    background-color: orangered;
+  }
+
+  .cardcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #f0f0f0;
+    padding: 30px;
+  }
+
+  .card {
+    width: 270px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 5px;
+  }
+
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .cardcontent {
+    padding: 15px;
+  }
+
+  .cardcontent h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .cardcontent p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .input {
+    height: 2rem;
+    width: 20rem;
+    padding-left: 1rem;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+  }
+
+  .hospital {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .hospital h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .hospital_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+  }
+
+  .hospital {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 2px solid #858282;
+    border-radius: 5px;
+    transition: transform 0.2s;
+    list-style: none;
+    text-decoration: none;
+
+  }
+
+  #hospital_pagination {
+    max-width: 500px;
+    border-radius: 8px;
+    border: 1px solid;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+
+  .hospital_paginationbutton {
+    margin: 0 10px;
+  }
