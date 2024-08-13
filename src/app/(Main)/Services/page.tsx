@@ -11,8 +11,7 @@ const services = () => {
 
   return (
     <div>
-      <h1>User List</h1>
-      <div> Services Page</div>
+      <h1>Services</h1>
     </div>
   );
 };

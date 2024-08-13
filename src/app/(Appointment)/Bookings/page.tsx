@@ -1,9 +1,12 @@
 "use client";
 import { Metadata } from "next";
 import React, { useState, FormEvent } from "react";
+// import { auth } from './firebase/config';
+import { useRouter } from 'next/navigation';
+import { getAuth } from "firebase/auth";
 
- const metadata: Metadata = {
-  title: "Appointment",
+const metadata: Metadata = {
+  title: "Bookings",
 };
 
 interface Doctor {
@@ -38,6 +41,14 @@ const AppointmentForm: React.FC = () => {
     });
     alert("Appointment booked successfully!");
   };
+
+  // const [user] = getAuth(auth);
+  const userSession = sessionStorage.getItem('user');
+  const router = useRouter();
+  
+  // if (!user && !userSession) {
+  //   router.push('/');
+  // }
 
   return (
     <div className="appointment-form">
@@ -109,7 +120,7 @@ const AppointmentForm: React.FC = () => {
   );
 };
 
-const appointment: React.FC = () => {
+const bookings: React.FC = () => {
   return (
     <div className="appointment-page">
       <h2>Appointment page</h2>
@@ -124,4 +135,4 @@ const appointment: React.FC = () => {
   );
 };
 
-export default appointment;
+export default bookings;

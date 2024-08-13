@@ -1,5 +1,8 @@
-"use client";
+"use client"
 
+import "./styles/globals.css";
+import Navbar from "../../public/comp/Navbar";
+import Footer from "../../public/comp/Footer";
 import Image from "next/image";
 import styles from "./styles/page.module.css";
 import React, { ChangeEvent, useState } from "react";
@@ -31,7 +34,7 @@ const Home: React.FC = () => {
       })
       .then((data) => {
         setIsLoading(false);
-        setData(data.data);        
+        setData(data.data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -67,12 +70,13 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <Navbar />
       <div className={styles.container}>
         <div className={styles.hero}>
           <p className="hero p">
             We Believe Everyone Should Have Easy Access To Healthcare.
           </p>
-          <Link href="/Appointment">
+          <Link href="/Bookings">
             <button className="hero button">Book an Appointment</button>
           </Link>
         </div>
@@ -154,6 +158,7 @@ const Home: React.FC = () => {
         <button
           onClick={prevPage}
           disabled={currentPage === 1}
+          className={styles.hospital_paginationbutton}
         >
           Prev
         </button>
@@ -170,10 +175,12 @@ const Home: React.FC = () => {
         <button
           onClick={nextPage}
           disabled={currentPage === noOfPages}
+          className={styles.hospital_paginationbutton}
         >
           Next
         </button>
       </div>
+      <Footer />
     </>
   );
 };

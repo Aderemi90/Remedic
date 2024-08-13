@@ -1,33 +1,25 @@
-import { Metadata } from "next"
-import Navbar from "../../public/comp/Navbar"
-import Footer from "../../public/comp/Footer"
-import "./styles/globals.css";
-// import {
-//   ClerkProvider} from '@clerk/nextjs'
+import "./styles/page.module.css";
+import { Metadata } from "next";
+
 
 export const metadata: Metadata = {
-  title: { 
-    default: 'Remedic', 
-    template: '%s | Remedic' 
+  title: {
+    default: "Remedic",
+    template: "%s | Remedic",
   },
-  description: 'Powered by Remedic',
-}
+  description: "Powered by Remedic",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    // <ClerkProvider>
-      <html lang="en">
-        <body>
-          <Navbar />
-          {children}
-          <Footer />
-          </body>
-      </html>
-    // </ClerkProvider>
-
-  )
+    <html lang="en">
+      <body>
+        {children}
+      </body>
+    </html>
+  );
 }

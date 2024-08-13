@@ -1,10 +1,12 @@
 "use client"
 import Image from "next/image"
-import Link from "next/link"
 import Remedic from "../comp/images/Remedic.png"
+import Link from "next/link"
 
 
-const Navbar = () => {
+
+const Authbar = () => {
+
     return ( 
     <nav className="nav">
      <div className="logo"> 
@@ -14,15 +16,8 @@ const Navbar = () => {
         width={100} 
         height={80}/>
       </div>
-      <div className="navlist">
-         <Link href="/">Home</Link>
-         <Link href="/About">About</Link>
-         <Link href="/Services">Services</Link>
-         <Link href="/Contact">Contact</Link>
-      </div>
-
     </nav>
     );
 }
  
-export default Navbar;
+export default Authbar;

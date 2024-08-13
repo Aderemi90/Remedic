@@ -115,17 +115,28 @@
   }
 
   #hospital_pagination {
-    max-width: 500px;
     border-radius: 8px;
     border: 1px solid;
-    padding: 0.6em 1.2em;
+    padding: 0.2em 0.2em;
     font-size: 1em;
-    font-weight: 500;
     font-family: inherit;
     cursor: pointer;
-    transition: border-color 0.25s;
+    margin: 1.5px;
   }
 
   .hospital_paginationbutton {
+    border-radius: 8px;
     margin: 0 10px;
+    border: 1px solid;
+    padding: 0.2em 0.2em;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
+  .hospital_paginationbutton:hover {
+    background-color: orangered;
+  }
+  #hospital_pagination:hover {
+    background-color: orangered;
+    
   }
