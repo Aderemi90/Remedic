@@ -92,6 +92,11 @@
   color: #858282;
   font-size: 18px;
 }
+.error {
+  color: red;
+  margin: 10px;
+  font-size: 14px;
+}
 
   
  

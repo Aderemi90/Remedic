@@ -1,5 +1,4 @@
 "use client"
-
 import "./styles/globals.css";
 import Navbar from "../../public/comp/Navbar";
 import Footer from "../../public/comp/Footer";
@@ -8,6 +7,8 @@ import styles from "./styles/page.module.css";
 import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { useEffect } from "react";
+
+
 
 interface DataItem {
   id: number;
@@ -24,6 +25,7 @@ const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  
   useEffect(() => {
     fetch("https://api.reliancehmo.com/v3/providers")
       .then((res) => {

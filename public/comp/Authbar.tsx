@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image"
 import Remedic from "../comp/images/Remedic.png"
-import Link from "next/link"
+
 
 
 

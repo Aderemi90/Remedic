@@ -1,9 +1,9 @@
 "use client";
 import { Metadata } from "next";
 import React, { useState, FormEvent } from "react";
-// import { auth } from './firebase/config';
+import { auth } from '../../config/firebase';
 import { useRouter } from 'next/navigation';
-import { getAuth } from "firebase/auth";
+import {useAuthState} from 'react-firebase-hooks/auth';
 
 const metadata: Metadata = {
   title: "Bookings",
@@ -42,13 +42,13 @@ const AppointmentForm: React.FC = () => {
     alert("Appointment booked successfully!");
   };
 
-  // const [user] = getAuth(auth);
+  const [user] = useAuthState(auth);
   const userSession = sessionStorage.getItem('user');
   const router = useRouter();
   
-  // if (!user && !userSession) {
-  //   router.push('/');
-  // }
+  if (!user && !userSession) {
+    router.push('/login');
+  }
 
   return (
     <div className="appointment-form">
