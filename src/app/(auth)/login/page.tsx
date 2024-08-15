@@ -5,9 +5,8 @@ import Link from "next/link";
 import React, { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 import { auth, googleProvider, githubProvider } from "../../config/firebase";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import styles from "../login/page.module.css";
-
+import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import styles from "../page.module.css";
 
 
 const Login: FC = () => {
@@ -33,6 +32,15 @@ const Login: FC = () => {
       } else {
         setError("The user is not available. Please register.");
       }
+    }
+  };
+
+  const logOut = async() => {
+    try{
+      await signOut(auth);
+      sessionStorage.removeItem("user");
+    } catch(err){
+      console.error(err);
     }
   };
 
@@ -100,3 +108,4 @@ const Login: FC = () => {
 };
 
 export default Login;
+

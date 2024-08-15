@@ -1,6 +1,6 @@
 "use client"
-import "./styles/globals.css";
 import Navbar from "../../public/comp/Navbar";
+import "./styles/globals.css";
 import Footer from "../../public/comp/Footer";
 import Image from "next/image";
 import styles from "./styles/page.module.css";
@@ -8,14 +8,11 @@ import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { useEffect } from "react";
 
-
-
 interface DataItem {
   id: number;
   name: string;
   address: string;
   phone_number: number;
-  // completed: boolean;
 }
 
 const Home: React.FC = () => {
@@ -25,7 +22,6 @@ const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  
   useEffect(() => {
     fetch("https://api.reliancehmo.com/v3/providers")
       .then((res) => {
@@ -49,7 +45,6 @@ const Home: React.FC = () => {
   );
 
   const noOfPages = Math.ceil(filteredData.length / dataPerPage);
-  const pages: number[] = Array.from({ length: noOfPages }, (_, i) => i + 1);
   const indexOfLastData = currentPage * dataPerPage;
   const indexOfFirstData = indexOfLastData - dataPerPage;
   const visibleData = filteredData.slice(indexOfFirstData, indexOfLastData);
@@ -68,6 +63,65 @@ const Home: React.FC = () => {
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
+  };
+
+  const convertToCSV = (data: DataItem[]) => {
+    const csvRows = [];
+    const headers = Object.keys(data[0]);
+    csvRows.push(headers.join(","));
+
+    for (const row of data) {
+      const values = headers.map((header) => {
+        const escaped = `${row[header as keyof DataItem]}`.replace(/"/g, '\\"');
+        return `"${escaped}"`;
+      });
+      csvRows.push(values.join(","));
+    }
+
+    return csvRows.join("\n");
+  };
+
+  const downloadCSV = () => {
+    const csvData = convertToCSV(visibleData);
+    const blob = new Blob([csvData], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "hospital_data.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
+  const renderPageNumbers = () => {
+    const maxPagesToShow = 5;
+    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);
+    let startPage = Math.max(currentPage - halfMaxPagesToShow, 1);
+    let endPage = Math.min(currentPage + halfMaxPagesToShow, noOfPages);
+
+    // Adjust if the range is smaller than 5 pages
+    if (endPage - startPage < maxPagesToShow - 1) {
+      if (startPage === 1) {
+        endPage = Math.min(startPage + maxPagesToShow - 1, noOfPages);
+      } else {
+        startPage = Math.max(endPage - maxPagesToShow + 1, 1);
+      }
+    }
+
+    const pages = [];
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <button
+          key={i}
+          onClick={() => setCurrentPage(i)}
+          className={i === currentPage ? "active" : ""}
+          id={styles.hospital_pagination}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pages;
   };
 
   return (
@@ -129,7 +183,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div >
         <input
           className={styles.input}
           type="text"
@@ -157,6 +211,11 @@ const Home: React.FC = () => {
             ))}
           </div>
         </div>
+        <div>
+          <button onClick={downloadCSV} className={styles.downloadButton}>
+            Download CSV
+          </button>
+        </div>
         <button
           onClick={prevPage}
           disabled={currentPage === 1}
@@ -164,16 +223,7 @@ const Home: React.FC = () => {
         >
           Prev
         </button>
-        {pages.map((page) => (
-          <button
-            key={page}
-            onClick={() => setCurrentPage(page)}
-            className={page === currentPage ? "active" : ""}
-            id={styles.hospital_pagination}
-          >
-            {page}
-          </button>
-        ))}
+        {renderPageNumbers()}
         <button
           onClick={nextPage}
           disabled={currentPage === noOfPages}

@@ -58,7 +58,7 @@
 }
 
 .icon:hover {
-  color: #007bff; /* Change to your preferred hover color */
+  color: orangered;
 }
 
 .links {
@@ -73,7 +73,7 @@
 }
 
 .link:hover {
-  color: #007bff; /* Change to your preferred hover color */
+  color: orangered
 }
 
 .copyright {
