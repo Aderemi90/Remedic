@@ -42,7 +42,7 @@ const contact: React.FC = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Handle form submission, e.g., send data to the server or display a message
+
     console.log("Form submitted:", {
       name,
       title,

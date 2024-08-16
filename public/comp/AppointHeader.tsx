@@ -7,7 +7,6 @@ import { auth } from "../../src/app/config/firebase";
 
 
 
-
 const AppointNavbar = () => {
 
   const logOut = async () => {

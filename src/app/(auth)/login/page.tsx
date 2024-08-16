@@ -66,8 +66,14 @@ const Login: FC = () => {
             <button className={styles.googleButton} onClick={signInWithGoogle}>
               Sign in with Google <FcGoogle className={styles.googleIcon} />
             </button>
+            <button className={styles.googleButtonmobile} onClick={signInWithGoogle}>
+              <FcGoogle className={styles.googleIcon} />
+            </button>
             <button className={styles.githubButton} onClick={signInWithGithub}>
               Sign in with Github <FaGithub className={styles.githubIcon} />
+            </button>
+            <button className={styles.githubButtonmobile} onClick={signInWithGithub}>
+              <FaGithub className={styles.githubIcon} />
             </button>
           </div>
           <input

@@ -106,6 +106,14 @@
 .registerButton:hover {
   background-color: orangered;
 }
+.googleButtonmobile {
+  display: none;
+
+}
+.githubButtonmobile {
+  display: none;
+}
+
 
 /************************************ MOBILE VIEW **********************************/
 
@@ -121,40 +129,28 @@
     border-radius: 8px;
   }
   .googleButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem;
-    margin-top: 1rem;
-    background-color: #4285f4;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    visibility: collapse;
+    display: none;
   }
   .githubButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem;
+    display: none;
+  }
+  .githubButtonmobile {
+    padding: 1.75rem;
     margin-top: 1rem;
     background-color: #333;
     color: white;
-    border: none;
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    visibility: collapse;
   }
-  .providers {
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
+  .googleButtonmobile {
+    padding: 1.75rem;
+    margin-top: 1rem;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
   }
-
 }
  

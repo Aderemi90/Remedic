@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 
+
 const TermsAndConditions: React.FC = () => {
     
   return (
-    <div style={{ padding: '2rem', maxWidth: '1000px', margin: '30px 50px', border: '10px', marginBottom: "1rem" }}>
-      <h1 style={{ marginBottom: "1rem" }}>Terms and Conditions</h1>
+    <div style={{ padding: '2rem', maxWidth: '1000px', margin: '30px 50px', border: '10px', marginBottom: "1rem" }} className='termscontainer'>
+      <h1 className="titleh1" style={{ marginBottom: "1rem" }}>Terms and Conditions</h1>
       <p style={{ marginBottom: "1rem" }}><strong>Last Updated:</strong> [13th August 2024]</p>
 
       <h2 style={{ marginBottom: "1rem" }}>1. Acceptance of Terms</h2>

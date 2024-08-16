@@ -5,6 +5,7 @@ import { auth } from "../../config/firebase";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from "react";
+import "../../styles/globals.css";
 
 const metadata: Metadata = {
   title: "Bookings",

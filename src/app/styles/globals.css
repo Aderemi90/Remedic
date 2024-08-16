@@ -216,3 +216,32 @@ nav a:hover {
   color: white;
   background-color: orangered;
 }
+
+/************************************ MOBILE VIEW **********************************/
+
+@media (max-width: 425px) {
+  .appointment-form {
+    max-width: 500px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 25px;
+  }
+
+  .appointment-page p{
+    max-width: 550px;
+    margin-left: 20px;
+    padding: 10px;
+    margin-bottom: 25px;
+  }
+  
+  .appointment-page h2{
+    margin-left: 20px;
+    padding: 10px;
+  }
+
+}
+
+
