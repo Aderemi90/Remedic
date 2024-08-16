@@ -99,7 +99,7 @@ const Home: React.FC = () => {
     let startPage = Math.max(currentPage - halfMaxPagesToShow, 1);
     let endPage = Math.min(currentPage + halfMaxPagesToShow, noOfPages);
 
-    // Adjust if the range is smaller than 5 pages
+   
     if (endPage - startPage < maxPagesToShow - 1) {
       if (startPage === 1) {
         endPage = Math.min(startPage + maxPagesToShow - 1, noOfPages);
@@ -183,7 +183,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
-      <div >
+      <div className={styles.hospitalcontainer}>
         <input
           className={styles.input}
           type="text"
@@ -192,21 +192,21 @@ const Home: React.FC = () => {
         />
         <select
           onChange={(e) => setDataPerPage(Number(e.target.value))}
-          value={dataPerPage}
+          value={dataPerPage} className={styles.inputselect}
         >
           <option value={12}>10</option>
           <option value={32}>30</option>
           <option value={52}>50</option>
         </select>
         <div>
-          <h1>Hospital Search</h1>
+          <h2 className={styles.hospitalh2}>Hospital Search</h2>
           {isLoading && <div>Loading...</div>}
           <div className={styles.hospital_grid}>
             {visibleData.map((item) => (
               <div className={styles.hospital} key={item.id}>
                 <h2>{item.name}</h2>
-                <p>{item.address}</p>
-                <p>{item.phone_number}</p>
+                <p>Address: {item.address}</p>
+                <p>Phone: {item.phone_number}</p>
               </div>
             ))}
           </div>

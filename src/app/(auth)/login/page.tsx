@@ -9,6 +9,7 @@ import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/a
 import styles from "../page.module.css";
 
 
+
 const Login: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -92,14 +93,14 @@ const Login: FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className={styles.button} onClick={logIn}>
+          <button style={{ borderRadius: "8px"}} className={styles.button} onClick={logIn}>
             Login
           </button>
         </div>
         {error && <div className={styles.error}>{error}</div>}
         <div>
-          <p>
-            Don't have an account? <Link href="/register">Register</Link>
+          <p style={{ padding: "0.5rem", marginTop: "0.5rem"}}>
+            Don't have an account? <Link style={{ marginTop: "1rem",fontSize: "1.1rem", textDecoration: "none", color: "blue" }} href="/register">Register</Link>
           </p>
         </div>
       </div>

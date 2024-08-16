@@ -8,16 +8,16 @@ import React from 'react';
 
 const about: React.FC = () => {
   return (
-    <div className="about-us">
-      <h1>About Us</h1><br/>
+    <div className="about-us" style={{fontFamily: 'Arial, sans-serif'}}>
+      <h1 style={{ marginBottom: '15px' }}>About Us</h1><br/>
       <section className="mission">
-        <h2>Our Mission</h2>
+        <h2 style={{ marginBottom: '15px' }}>Our Mission</h2>
         <p>
           Our mission is to provide high-quality healthcare services to our community. We strive to offer personalized and compassionate care to each of our patients.
         </p>
       </section>
-      <section className="values">
-        <h2>Our Values</h2>
+      <section className="values" >
+        <h2 style={{ marginBottom: '15px' }}>Our Values</h2>
         <ul>
           <li>Compassion: We treat each patient with empathy and understanding.</li>
           <li>Excellence: We are committed to maintaining the highest standards in healthcare.</li>
@@ -26,8 +26,8 @@ const about: React.FC = () => {
         </ul>
       </section>
       <section className="team">
-        <h2>Meet Our Team</h2>
-        <p>
+        <h2 style={{ marginBottom: '15px' }}>Meet Our Team</h2>
+        <p style={{ marginBottom: '10px' }}>
           Our team of dedicated professionals includes experienced doctors, nurses, and support staff who are all committed to providing exceptional care.
         </p>
         <ul>

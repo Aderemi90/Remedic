@@ -139,11 +139,11 @@ const contact: React.FC = () => {
         <div className="contact-details">
           <div className="contact-info">
             <h2>Our Address</h2>
-            <p>123 Health St, Wellness City, MediLand</p>
+            <p>123 Cole Palmer St, Wellness City, Lagos</p>
             <h2>Email</h2>
-            <p>info@hospital.com</p>
+            <p>info@remedic.com</p>
             <h2>Phone</h2>
-            <p>(123) 456-7890</p>
+            <p>0703-REMEDIC</p>
           </div>
         </div>
       </div>

@@ -17,15 +17,25 @@ interface HospitalItem {
 interface Doctor {
   id: number;
   name: string;
+  specialty?: string;
 }
 
 const doctors: Doctor[] = [
-  { id: 1, name: "Dr. John Doe" },
-  { id: 2, name: "Dr. Jane Smith" },
-  { id: 3, name: "Dr. Sam Brown" },
+  { id: 1, name: "Dr. Ken Jigawa (cardiology)"},
+  { id: 2, name: "Dr. Ben Shapiro (oncology)"},
+  { id: 3, name: "Dr. Setemi Ojo (radiology)" },
+  { id: 4, name: "Dr. Limit Less (cardiology)" },
+  { id: 5, name: "Dr. Kayode Nwogbu (dermatology)" },
+  { id: 6, name: "Dr. Ugo C. Ugo (pediatrics)" },
+  { id: 7, name: "Dr. Ayomide Bashiru (orthopedics)"},
+  { id: 8, name: "Dr. Remi Owolabi (oncology)" },
+  { id: 9, name: "Dr. Dotun Ogunlana (psychiatry)" },
+  { id: 10, name: "Dr. Omotola Adebusuyi (gynecology)" },
+  { id: 11, name: "Dr. Olawale Yusuph (gynecology)" },
+  { id: 12, name: "Dr. Ikechuckwu Ngbeme (urology)" },
 ];
 
-  const AppointmentForm: React.FC = () => {
+const AppointmentForm: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
@@ -34,10 +44,11 @@ const doctors: Doctor[] = [
   const [time, setTime] = useState<string>("");
   const [data, setData] = useState<HospitalItem[]>([]);
   const [hospital, setHospital] = useState<string>("");
+  const [specialty, setSpecialty] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Handle form submission, such as sending the data to a backend server
+    
     console.log({
       name,
       email,
@@ -47,6 +58,15 @@ const doctors: Doctor[] = [
       time,
     });
     alert("Appointment booked successfully!");
+    setEmail("");
+    setPhone("");
+    setDoctor("");
+    setDate("");
+    setTime("");
+    setName("");
+    setHospital("");
+    setSpecialty("");
+    router.push("/");
   };
   useEffect(() => {
     fetch("https://api.reliancehmo.com/v3/providers")
@@ -98,23 +118,6 @@ const doctors: Doctor[] = [
             />
           </div>
           <div>
-            <label>Hospital:</label>
-            
-            <select
-              value={hospital}
-              onChange={(e) => setHospital(e.target.value)}
-              required
-            >
-              <option value="">Pick preferred hospital {isLoading && <div>Loading...</div>}</option>
-              
-              {data.map((hospital) => (
-                <option key={hospital.id} value={hospital.name}>
-                  {hospital.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div>
             <label>Phone:</label>
             <input
               type="tel"
@@ -122,6 +125,25 @@ const doctors: Doctor[] = [
               onChange={(e) => setPhone(e.target.value)}
               required
             />
+          </div>
+          <div>
+            <label>Hospital:</label>
+
+            <select
+              value={hospital}
+              onChange={(e) => setHospital(e.target.value)}
+              required
+            >
+              <option value="">
+                Pick preferred hospital {isLoading && <div>Loading...</div>}
+              </option>
+
+              {data.map((hospital) => (
+                <option key={hospital.id} value={hospital.name}>
+                  {hospital.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label>Doctor:</label>
@@ -134,8 +156,30 @@ const doctors: Doctor[] = [
               {doctors.map((doc) => (
                 <option key={doc.id} value={doc.name}>
                   {doc.name}
-                </option>
+                </option>                
               ))}
+            </select>
+          </div>
+          <div style={{ marginBottom: "1rem" }}>
+            <label htmlFor="specialty">Specialty</label>
+            <select
+              id="specialty"
+              value={specialty}
+              onChange={(e) => setSpecialty(e.target.value)}
+              required
+              style={{ width: "100%", padding: "0.5rem" }}
+            >
+              <option value="">Select a Specialty</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="dermatology">Dermatology</option>
+              <option value="neurology">Neurology</option>
+              <option value="pediatrics">Pediatrics</option>
+              <option value="orthopedics">Orthopedics</option>
+              <option value="gynecology">Gynecology</option>
+              <option value="oncology">Oncology</option>
+              <option value="radiology">Radiology</option>
+              <option value="psychiatry">Psychiatry</option>
+              <option value="urology">Urology</option>
             </select>
           </div>
           <div>
@@ -163,7 +207,7 @@ const doctors: Doctor[] = [
   );
 };
 
-  const bookings: React.FC = () => {
+const bookings: React.FC = () => {
   return (
     <div className="appointment-page">
       <h2>Appointment page</h2>

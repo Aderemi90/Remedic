@@ -1,4 +1,3 @@
-import Authbar from "../../../public/comp/Authbar";
 import "../styles/globals.css";
 import Footer from "../../../public/comp/Footer";
 
@@ -9,7 +8,6 @@ export default function AppointmentLayout({
 }) {
     return (
         <>
-            <Authbar/>
             {children}
             <Footer />
         </>
