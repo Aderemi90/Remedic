@@ -129,7 +129,7 @@ const Home: React.FC = () => {
       <Navbar />
       <div className={styles.container}>
         <div className={styles.hero}>
-          <p className="hero p">
+          <p className="hero p" data-testid="cypress-text">
             We Believe Everyone Should Have Easy Access To Healthcare.
           </p>
           <Link href="/Bookings">

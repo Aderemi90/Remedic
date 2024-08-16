@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+REMEDIC-CAREFINDER
 
-## Getting Started
+Overview
+This hospital booking website allows users to search for hospitals by name, address, or state. Users can book appointments with doctors in various specialties, choose preferred dates and times, and access a variety of other features depending on their account status.
 
-First, run the development server:
+Features
+Search Functionality: Users can search for hospitals using keywords like name, address, and state.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+User Authentication:
+Users can log in using Google or GitHub accounts.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Users can also register using their email and password.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Only signed-in users can access the booking page.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Doctor Appointments: Registered users can browse doctors by specialty and book appointments by selecting a date and time.
 
-## Learn More
+Hospital List Download: Both authorized and unauthorized users can download a list of hospitals in CSV format.
 
-To learn more about Next.js, take a look at the following resources:
+Feedback Submission: Both authorized and unauthorized users can provide feedback on the platform.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Prerequisites
+Node.js installed.
+Firebase account for authentication setup.
+GitHub and Google credentials for OAuth authentication.
 
-## Deploy on Vercel
+1. Search for Hospitals: Use the search bar on the home page to find hospitals by name, address, or state.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. User Authentication:
+a. Log in via Google or GitHub, or register with email and password.
+b. Only logged-in users can access the booking page.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Book Appointments:
+a. Browse doctors by specialty and book an appointment by selecting a suitable time and date.
+
+4. Download Hospital List: Click the "Download Hospital List" button to get a CSV file of all hospitals.
+5. Submit Feedback: Use the feedback form to share your thoughts about the platform.
+
+Author:
+Aderemi Oje
+
+Acknowledgements:
+AltSchool Africa
