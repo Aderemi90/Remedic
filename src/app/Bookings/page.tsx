@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, FormEvent, useEffect } from "react";
-import { auth } from "../../config/firebase";
+import { auth } from "../config/firebase";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "../../styles/globals.css";
+import "../styles/globals.css";
 
 
 interface HospitalItem {
@@ -47,7 +47,7 @@ const AppointmentForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const router = useRouter();
-  const [user] = useAuthState(auth);
+  // const [user] = useAuthState(auth);
 
   useEffect(() => {
     fetch("https://api.reliancehmo.com/v3/providers")
