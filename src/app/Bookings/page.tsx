@@ -47,7 +47,6 @@ const AppointmentForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const router = useRouter();
-  const [user] = useAuthState(auth);
 
   useEffect(() => {
     fetch("https://api.reliancehmo.com/v3/providers")
@@ -70,12 +69,6 @@ const AppointmentForm: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    const userSession = typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
-
-    if (!user && !userSession) {
-      router.push("/login");
-      return;
-    }
 
     console.log({
       name,
