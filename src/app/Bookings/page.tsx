@@ -1,11 +1,10 @@
 "use client";
 
-import { Metadata } from "next";
 import React, { useState, FormEvent, useEffect } from "react";
-import { auth } from "../../config/firebase";
+import { auth } from "../config/firebase";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "../../styles/globals.css";
+import "../styles/globals.css";
 
 
 interface HospitalItem {
@@ -47,7 +46,8 @@ const AppointmentForm: React.FC = () => {
   const [specialty, setSpecialty] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-
+  const router = useRouter();
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     fetch("https://api.reliancehmo.com/v3/providers")
@@ -70,6 +70,13 @@ const AppointmentForm: React.FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
+    const userSession = typeof window !== "undefined" ? sessionStorage.getItem("user") : null;
+
+    if (!user && !userSession) {
+      router.push("/login");
+      return;
+    }
+
     console.log({
       name,
       email,
@@ -91,14 +98,6 @@ const AppointmentForm: React.FC = () => {
     setSpecialty("");
     router.push("/");
   };
-  const router = useRouter();
-  const [user] = useAuthState(auth);
-  const userSession = sessionStorage.getItem("user")
-
-  if (!user && !userSession) {
-    router.push("/login");
-    return;
-  }
 
   return (
     <div className="appointment-form">
