@@ -1,4 +1,5 @@
 "use client";
+
 import { Metadata } from "next";
 import React, { useState, FormEvent } from "react";
 import { auth } from "../../config/firebase";
@@ -6,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from "react";
 import "../../styles/globals.css";
+
 
 const metadata: Metadata = {
   title: "Bookings",
@@ -49,7 +51,13 @@ const AppointmentForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    
+    const router = useRouter();
+    const [user] = useAuthState(auth);
+    const userSession = sessionStorage.getItem("user");
+  
+    if (!user && !userSession) {
+      router.push("/login");
+    }
     console.log({
       name,
       email,
@@ -71,6 +79,9 @@ const AppointmentForm: React.FC = () => {
     router.push("/");
   };
   useEffect(() => {
+
+
+
     fetch("https://api.reliancehmo.com/v3/providers")
       .then((res) => {
         if (!res.ok) {
@@ -88,13 +99,6 @@ const AppointmentForm: React.FC = () => {
       });
   }, []);
 
-  const [user] = useAuthState(auth);
-  const userSession = sessionStorage.getItem("user");
-  const router = useRouter();
-
-  if (!user && !userSession) {
-    router.push("/login");
-  }
 
   return (
     <>
@@ -136,11 +140,11 @@ const AppointmentForm: React.FC = () => {
               onChange={(e) => setHospital(e.target.value)}
               required
             >
-              <option value="">
-                Pick preferred hospital {isLoading && <div>Loading...</div>}
-              </option>
-
-              {data.map((hospital) => (
+            <option value="">
+              {isLoading ? "Loading hospitals..." : "Pick preferred hospital"}
+            </option>
+            {!isLoading &&
+              data.map((hospital) => (
                 <option key={hospital.id} value={hospital.name}>
                   {hospital.name}
                 </option>
