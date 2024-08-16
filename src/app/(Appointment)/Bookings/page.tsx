@@ -58,6 +58,7 @@ const AppointmentForm: React.FC = () => {
       time,
     });
     alert("Appointment booked successfully!");
+
     setEmail("");
     setPhone("");
     setDoctor("");

@@ -36,15 +36,6 @@ const Login: FC = () => {
     }
   };
 
-  const logOut = async() => {
-    try{
-      await signOut(auth);
-      sessionStorage.removeItem("user");
-    } catch(err){
-      console.error(err);
-    }
-  };
-
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
