@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState, FormEvent, useEffect } from "react";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "../styles/globals.css";
+import { collection, addDoc } from "firebase/firestore";
 
 interface HospitalItem {
   id: number;
@@ -33,17 +34,17 @@ const doctors: Doctor[] = [
 ];
 
 const AppointmentForm: React.FC = () => {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
-  const [doctor, setDoctor] = useState<string>("");
-  const [date, setDate] = useState<string>("");
-  const [time, setTime] = useState<string>("");
   const [data, setData] = useState<HospitalItem[]>([]);
-  const [hospital, setHospital] = useState<string>("");
-  const [specialty, setSpecialty] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
- 
+  const [name, setNewName] = useState<string>("");
+  const [email, setNewEmail] = useState<string>("");
+  const [phone, setNewPhone] = useState<string>("");
+  const [doctor, setNewDoctor] = useState<string>("");
+  const [date, setNewDate] = useState<string>("");
+  const [time, setNewTime] = useState<string>("");
+  const [hospital, setNewHospital] = useState<string>("");
+  const [specialty, setNewSpecialty] = useState<string>("");
+
   const [user, loading] = useAuthState(auth);
   const router = useRouter();
 
@@ -65,10 +66,22 @@ const AppointmentForm: React.FC = () => {
       });
   }, []);
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const bookingsCollectionRef = collection(db, "bookings");
 
-    console.log({
+  const handleSubmit = async (e:FormEvent) => {
+    e.preventDefault()
+    try {
+      await addDoc(bookingsCollectionRef, {
+        name: name,
+        email: email,
+        phone: phone,
+        doctor: doctor,
+        date: date,
+        time: time,
+        hospital: hospital,
+        specialty: specialty,
+      });
+      console.log({
       name,
       email,
       phone,
@@ -76,37 +89,37 @@ const AppointmentForm: React.FC = () => {
       date,
       time,
     });
-
     alert("Appointment booked successfully!");
-
-    setName("");
-    setEmail("");
-    setPhone("");
-    setDoctor("");
-    setDate("");
-    setTime("");
-    setHospital("");
-    setSpecialty("");
+    setNewName("");
+    setNewEmail("");
+    setNewPhone("");
+    setNewDoctor("");
+    setNewHospital("");
+    setNewSpecialty("");
+    setNewDate("");
+    setNewTime("");
     router.push("/");
+    } catch (err) {
+      console.error("Error adding document", err);
+    }
   };
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/login');
+      router.push("/login");
     }
   }, [user, loading]);
 
-
   return (
-    <div className="appointment-form">
+    <div  className="appointment-form">
       <h2>Book an Appointment</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div>
           <label>Name:</label>
           <input
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setNewName(e.target.value)}
             required
           />
         </div>
@@ -115,7 +128,7 @@ const AppointmentForm: React.FC = () => {
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setNewEmail(e.target.value)}
             required
           />
         </div>
@@ -124,7 +137,7 @@ const AppointmentForm: React.FC = () => {
           <input
             type="tel"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => setNewPhone(e.target.value)}
             required
           />
         </div>
@@ -132,7 +145,7 @@ const AppointmentForm: React.FC = () => {
           <label>Hospital:</label>
           <select
             value={hospital}
-            onChange={(e) => setHospital(e.target.value)}
+            onChange={(e) => setNewHospital(e.target.value)}
             required
             disabled={isLoading}
           >
@@ -151,7 +164,7 @@ const AppointmentForm: React.FC = () => {
           <label>Doctor:</label>
           <select
             value={doctor}
-            onChange={(e) => setDoctor(e.target.value)}
+            onChange={(e) => setNewDoctor(e.target.value)}
             required
           >
             <option value="">Select a Doctor</option>
@@ -167,7 +180,7 @@ const AppointmentForm: React.FC = () => {
           <select
             id="specialty"
             value={specialty}
-            onChange={(e) => setSpecialty(e.target.value)}
+            onChange={(e) => setNewSpecialty(e.target.value)}
             required
             style={{ width: "100%", padding: "0.5rem" }}
           >
@@ -189,7 +202,7 @@ const AppointmentForm: React.FC = () => {
           <input
             type="date"
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={(e) => setNewDate(e.target.value)}
             required
           />
         </div>
@@ -198,7 +211,7 @@ const AppointmentForm: React.FC = () => {
           <input
             type="time"
             value={time}
-            onChange={(e) => setTime(e.target.value)}
+            onChange={(e) => setNewTime(e.target.value)}
             required
           />
         </div>

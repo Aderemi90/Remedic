@@ -134,8 +134,9 @@ const register: React.FC = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
               style={{ width: "100%", padding: "0.5rem", paddingRight: "2rem" }}
+              autoComplete="off"
+              required
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
@@ -217,7 +218,6 @@ const register: React.FC = () => {
           <Link style={{ color: "blue", textDecoration: "none" }} href="/login">
             Login
           </Link>
-          .
         </p>
       </div>
     </div>
