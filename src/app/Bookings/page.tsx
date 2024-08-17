@@ -45,7 +45,9 @@ const AppointmentForm: React.FC = () => {
   const [hospital, setHospital] = useState<string>("");
   const [specialty, setSpecialty] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
+ 
+  const [user] = useAuthState(auth);
+  const [userSession, setUserSession] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -91,6 +93,16 @@ const AppointmentForm: React.FC = () => {
     setSpecialty("");
     router.push("/");
   };
+
+  useEffect(() => {
+    setUserSession(sessionStorage.getItem("user"));
+  }, []);
+  
+  useEffect(() => {
+    if (!user && !userSession) {
+      router.push('/login');
+    }
+  }, [user, userSession]);
 
   return (
     <div className="appointment-form">
