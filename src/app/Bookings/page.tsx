@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "../styles/globals.css";
 
-
 interface HospitalItem {
   id: number;
   name: string;
@@ -16,7 +15,6 @@ interface HospitalItem {
 interface Doctor {
   id: number;
   name: string;
-  specialty?: string;
 }
 
 const doctors: Doctor[] = [
@@ -46,8 +44,7 @@ const AppointmentForm: React.FC = () => {
   const [specialty, setSpecialty] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
  
-  const [user] = useAuthState(auth);
-  const [userSession, setUserSession] = useState<string | null>(null);
+  const [user, loading] = useAuthState(auth);
   const router = useRouter();
 
   useEffect(() => {
@@ -70,7 +67,6 @@ const AppointmentForm: React.FC = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
 
     console.log({
       name,
@@ -95,14 +91,11 @@ const AppointmentForm: React.FC = () => {
   };
 
   useEffect(() => {
-    setUserSession(sessionStorage.getItem("user"));
-  }, []);
-  
-  useEffect(() => {
-    if (!user && !userSession) {
+    if (!loading && !user) {
       router.push('/login');
     }
-  }, [user, userSession]);
+  }, [user, loading]);
+
 
   return (
     <div className="appointment-form">
