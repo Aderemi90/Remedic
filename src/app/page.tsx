@@ -129,8 +129,8 @@ const Home: React.FC = () => {
       <Navbar />
       <div className={styles.container}>
         <div className={styles.hero}>
-          <p className="hero p" data-testid="cypress-text">
-            We Believe Everyone Should Have Easy Access To Healthcare.
+          <p className="hero p" data-testid="cypress-text" >
+          Book Your Health in a Click. Find the Right Doctor, Anytime, Anywhere.
           </p>
           <Link href="/Bookings">
             <button className="hero button">Book an Appointment</button>

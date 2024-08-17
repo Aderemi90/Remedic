@@ -30,20 +30,12 @@ const register: React.FC = () => {
 
   const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
-    console.log({
-      firstName,
-      lastName,
-      email,
-      phone,
-      city,
-      gender,
-    });
-    alert("Registration successful!");
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
+
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -56,12 +48,13 @@ const register: React.FC = () => {
         displayName: firstName,
       });
       sessionStorage.setItem("user", email);
-      router.push("/Bookings");
+      router.push("/");
     } catch (err) {
       const firebaseError = err as AuthError;
       setError(firebaseError.message);
     }
   };
+
 
   return (
     <div
@@ -155,7 +148,6 @@ const register: React.FC = () => {
               }}
             >
               {showPassword ? "👁️" : "👁️‍🗨️"}{" "}
-             
             </span>
           </div>
         </div>
@@ -181,7 +173,6 @@ const register: React.FC = () => {
               }}
             >
               {showConfirmPassword ? "👁️" : "👁️‍🗨️"}{" "}
-              
             </span>
           </div>
         </div>
