@@ -77,6 +77,8 @@ const Login: FC = () => {
             </button>
           </div>
           <input
+            data-testid="cypress-email1"
+            data-test="cypress-email"
             className={styles.input}
             placeholder="Email"
             type="email"
@@ -84,13 +86,15 @@ const Login: FC = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
+            data-testid="cypress-password1"
+            data-test="cypress-password"
             className={styles.input}
             placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button style={{ borderRadius: "8px"}} className={styles.button} onClick={logIn}>
+          <button data-testid="cypress-login1" data-test="cypress-login"style={{ borderRadius: "8px"}} className={styles.button} onClick={logIn}>
             Login
           </button>
         </div>

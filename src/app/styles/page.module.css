@@ -170,3 +170,14 @@
 .downloadButton:hover{
   background-color: orangered;
 }
+
+/************************************ MOBILE VIEW **********************************/
+
+@media (max-width: 425px) {
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+  }
+}
