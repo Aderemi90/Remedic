@@ -5,9 +5,8 @@ import Link from "next/link";
 import React, { FC, useState } from "react";
 import { useRouter } from "next/navigation";
 import { auth, googleProvider, githubProvider } from "../../config/firebase";
-import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
 import styles from "../page.module.css";
-
 
 
 const Login: FC = () => {
